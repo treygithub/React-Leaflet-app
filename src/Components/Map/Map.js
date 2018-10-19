@@ -23,11 +23,12 @@ class MapComponent extends Component {
 
 
   render() {
+    console.log(this.props.bikesReducer.bikes)
     const position = [this.state.lat, this.state.lng]
     const MarkerDisplays = this.props.bikesReducer.bikes && this.props.bikesReducer.bikes.features.map((bike, i) => {
       const position = [bike.geometry.coordinates[1], bike.geometry.coordinates[0]]
       return (
-        <Marker key={i} position={position}>
+        <Marker  key={i} position={position}>
               <Popup>
                 <span>{bike.properties.title}</span>
               </Popup>
