@@ -15,7 +15,7 @@ const initialState = {
 export const getBikes = () => {
   return {
     type: GET_BIKE_LOCATIONS,
-    payload: axios.get('https://bikewise.org:443/api/v2/locations/markers?proximity_square=99999999999999&limit=500')
+    payload: axios.get('https://bikewise.org:443/api/v2/locations/markers?proximity_square=99999999999999&limit=250')
   };
 };
 
