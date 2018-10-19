@@ -44,7 +44,7 @@ class Nav extends React.Component {
         this.props.makeClustered();
       }
     } else {
-      this.setState({showErrorMsg: true})
+       this.setState({showErrorMsg: true})
     }
   }
 
@@ -64,7 +64,7 @@ class Nav extends React.Component {
       </div>
      
         {this.state.showErrorMsg ?  <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
-      Please Add Data First
+      Please Add Data First!
         </Tooltip>: null}
       </div>
     )
