@@ -36,9 +36,9 @@ class MapComponent extends Component {
     })
 
     return (
-        <div className="map-container">
-        <Map className="map" center={position} zoom={this.state.zoom}>
-            <TileLayer
+        <div className="map-container ">
+        <Map className="map "  center={position} zoom={this.state.zoom}>
+            <TileLayer 
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
@@ -52,7 +52,7 @@ class MapComponent extends Component {
             </MarkerClusterGroup>:MarkerDisplays}
             </Map>
 
-      </div>
+        </div>
     )
   }
 }

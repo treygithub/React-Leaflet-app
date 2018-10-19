@@ -6,14 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default class App extends Component{
-  state = {
-    play: true,
-  }
-
-  onTogglePlay = () => {
-    this.setState({ play: !this.state.play })
-  }
-
+  
   render() {
     return (
       <div>

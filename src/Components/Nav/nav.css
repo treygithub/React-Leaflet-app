@@ -2,8 +2,10 @@
     position: relative;
 }
 .nav{
+    z-index: 999;
     position: absolute;
     top:0;
     right:0;
-    margin-right:5%;
+    margin-right:2%;
+    margin-top:1%;
 }

@@ -2,16 +2,16 @@ import React from 'react'
 import './nav.css'
 import {Button} from 'reactstrap'
 import { connect } from "react-redux";
-import {getBikes, removeBikes, makeClustered} from '../../ducks/bikeReducer'
-
-//2146824698
+import {getBikes, removeBikes, makeClustered} from '../../ducks/bikeReducer';
+import {Tooltip} from 'reactstrap';
 
 class Nav extends React.Component {
  state = {
   toggleAddButton: true,
   addButtonName: "Add Data",
   clusterButtonName: "Cluster Data",
-  showErrorMsg: false
+  showErrorMsg: false,
+  tooltipOpen: false
  }
   onClickAddData = () =>{
     this.setState({showErrorMsg: false})
@@ -48,7 +48,11 @@ class Nav extends React.Component {
     }
   }
 
-
+  toggle = () => {
+    this.setState({
+      tooltipOpen: !this.state.tooltipOpen
+    });
+  }
 
   render() {
     const {addButtonName,  clusterButtonName} = this.state;
@@ -56,9 +60,12 @@ class Nav extends React.Component {
       <div className="nav-container">
       <div className="nav">
       <Button onClick={this.onClickAddData} outline color="primary" size="sm">{addButtonName}</Button>{' '}
-      <Button onClick={this.onClickClusterData} outline color="primary" size="sm">{clusterButtonName}</Button>
+      <Button onClick={this.onClickClusterData} outline color="primary" size="sm" href="#" id="TooltipExample">{clusterButtonName}</Button>
       </div>
-        {this.state.showErrorMsg && <div>Please Add Data First</div>}
+     
+        {this.state.showErrorMsg ?  <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
+      Please Add Data First
+        </Tooltip>: null}
       </div>
     )
   }
