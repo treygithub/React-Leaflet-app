@@ -1,15 +1,24 @@
 import React, { Component } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { connect } from "react-redux";
-import {getBikes} from '../../ducks/bikeReducer'
+import L from 'leaflet';
+import MarkerClusterGroup from './react-leaflet-markercluster';
+import {getBikes, makeClustered} from '../../ducks/bikeReducer'
 import './map.css';
 
 class MapComponent extends Component {
   state = {
-    
     lat: 31.169621,
     lng: -99.683617,
     zoom: 2,
+  }
+
+  createClusterCustomIcon  = (cluster) => {
+    return L.divIcon({
+      html: `<span>${cluster.getChildCount()}</span>`,
+      className: 'marker-cluster-custom',
+      iconSize: L.point(40, 40, true),
+    });
   }
 
 
@@ -33,9 +42,16 @@ class MapComponent extends Component {
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+          
+            {this.props.bikesReducer.clustered ? <MarkerClusterGroup
+                showCoverageOnHover={false}
+                spiderfyDistanceMultiplier={2}
+                iconCreateFunction={this.createClusterCustomIcon}
+              >
             {MarkerDisplays}
-            
-          </Map>
+            </MarkerClusterGroup>:MarkerDisplays}
+            </Map>
+
       </div>
     )
   }
@@ -48,5 +64,5 @@ const mapStateToProps = state => {
 export default
   connect(
     mapStateToProps,
-    { getBikes }
+    { getBikes, makeClustered }
   )(MapComponent)
