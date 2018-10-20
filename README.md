@@ -1,3 +1,6 @@
+Last updated 10/20/2018
+Added loader and zoomin feature - fixed bug on cluster button
+
 **** WARNING ****
 Use NPM not Yarn! There are some errors when install node modules with yarn, due to Specific versions and dependency versions! 
 To view in your browser simply Fork, Clone, NPM install and to fire the run script type " npm run dev " with-out the quotes in your terminal.
