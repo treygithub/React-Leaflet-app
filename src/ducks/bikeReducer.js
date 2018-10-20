@@ -35,7 +35,7 @@ export const makeClustered = () => {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_BIKE_LOCATIONS}_PENDING`:
-      return { ...state, loading: true, zoom: 2 };
+      return { ...state, loading: true, zoom: state.zoom };
     case `${GET_BIKE_LOCATIONS}_FULFILLED`:
       return { ...state, bikes: action.payload.data, loading: false, zoom: 3 };
     case `REMOVE_BIKES`:
