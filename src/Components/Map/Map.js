@@ -37,14 +37,6 @@ class MapComponent extends Component {
     loading:false
   }
 
-  // componentWillReceiveProps = () => {
-  //   if(this.props.bikesReducer.loading){
-  //     this.setState({loading: true})
-  //   }else{
-  //     this.setState({loading:false})
-  //   }
-  // }
-
   createClusterCustomIcon  = (cluster) => {
     return L.divIcon({
       html: `<span>${cluster.getChildCount()}</span>`,
@@ -52,7 +44,6 @@ class MapComponent extends Component {
       iconSize: L.point(40, 40, true),
     });
   }
-
 
   render() {
     console.log(this.props.bikesReducer.bikes)
@@ -71,7 +62,7 @@ class MapComponent extends Component {
 
     return (
         <div className="map-container ">
-        <Map className="map "  center={position} zoom={this.state.zoom}>
+        <Map className="map "  center={position} zoom={this.props.bikesReducer.zoom}>
             <TileLayer 
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

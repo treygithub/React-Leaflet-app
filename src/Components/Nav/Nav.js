@@ -18,7 +18,6 @@ class Nav extends React.Component {
     this.setState(
       { toggleAddButton: !this.state.toggleAddButton },
       () => {
-        
         if(this.state.toggleAddButton) {
            this.setState({addButtonName: "Add Data"})
         } else {
