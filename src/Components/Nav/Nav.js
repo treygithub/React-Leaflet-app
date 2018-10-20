@@ -1,9 +1,8 @@
 import React from 'react'
 import './nav.css'
-import {Button} from 'reactstrap'
+import {Button, Tooltip} from 'reactstrap'
 import { connect } from "react-redux";
 import {getBikes, removeBikes, makeClustered} from '../../ducks/bikeReducer';
-import {Tooltip} from 'reactstrap';
 
 class Nav extends React.Component {
  state = {
@@ -13,6 +12,7 @@ class Nav extends React.Component {
   showErrorMsg: false,
   tooltipOpen: false
  }
+
   onClickAddData = () =>{
     this.setState({showErrorMsg: false})
     this.setState(
@@ -31,12 +31,11 @@ class Nav extends React.Component {
         }
       }
     );
-    
   }
 
   onClickClusterData = () =>{
     if(this.props.bikesReducer.bikes) {   
-      if(!this.props.bikesReducer.clustered) {
+      if(this.props.bikesReducer.clustered) {
         this.setState({clusterButtonName: "Cluster Data"})
         this.props.makeClustered();
       } else {
@@ -55,16 +54,17 @@ class Nav extends React.Component {
   }
 
   render() {
+    console.log("this is state from nav", this.state)
+    console.log("loading...",this.props.bikesReducer.loading)
     const {addButtonName,  clusterButtonName} = this.state;
     return (
       <div className="nav-container">
-      <div className="nav">
-      <Button onClick={this.onClickAddData} outline color="primary" size="sm">{addButtonName}</Button>{' '}
-      <Button onClick={this.onClickClusterData} outline color="primary" size="sm" href="#" id="TooltipExample">{clusterButtonName}</Button>
-      </div>
-     
+        <div className="nav">
+          <Button onClick={this.onClickAddData} outline color="primary" size="sm">{addButtonName}</Button>{' '}
+          <Button onClick={this.onClickClusterData} outline color="primary" size="sm" href="#" id="TooltipExample">{clusterButtonName}</Button>
+        </div>
         {this.state.showErrorMsg ?  <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
-      Please Add Data First!
+        Please Add Data First!
         </Tooltip>: null}
       </div>
     )

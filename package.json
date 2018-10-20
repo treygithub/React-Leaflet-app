@@ -12,6 +12,7 @@
     "react-dom": "^16.5.2",
     "react-leaflet": "^2.0.0",
     "react-leaflet-markercluster": "^2.0.0-rc3",
+    "react-loader": "^2.4.5",
     "react-redux": "^5.0.7",
     "react-scripts": "2.0.5",
     "reactstrap": "^6.5.0",
