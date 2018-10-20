@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { connect } from "react-redux";
 import L from 'leaflet';
 import MarkerClusterGroup from './react-leaflet-markercluster';
-import {getBikes, makeClustered} from '../../ducks/bikeReducer'
+import {getBikes, makeClustered} from '../../ducks/bikeReducer';
 import './map.css';
 import Loader from 'react-loader';
+import Chart from '../Chart/Chart';
 
 var options = {
   lines: 13,
@@ -46,8 +47,7 @@ class MapComponent extends Component {
   }
 
   render() {
-    console.log(this.props.bikesReducer.bikes)
-    console.log(this.props)
+    console.log("this.props.bikesReducer.bikes",this.props.bikesReducer.bikes)
     const position = [this.state.lat, this.state.lng]
     const MarkerDisplays = this.props.bikesReducer.bikes && this.props.bikesReducer.bikes.features.map((bike, i) => {
       const position = [bike.geometry.coordinates[1], bike.geometry.coordinates[0]]
@@ -74,6 +74,7 @@ class MapComponent extends Component {
                 iconCreateFunction={this.createClusterCustomIcon}
               >
             {MarkerDisplays}
+            <Chart />
             </MarkerClusterGroup>:MarkerDisplays}
             </Loader>
             </Map>
