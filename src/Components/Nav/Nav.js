@@ -1,22 +1,24 @@
-import React from 'react'
+import React, {Component} from 'react'
 import './nav.css'
 import {Button, Tooltip} from 'reactstrap'
 import { connect } from "react-redux";
 import {getBikes, removeBikes, makeClustered} from '../../ducks/bikeReducer';
 
-class Nav extends React.Component {
+function noErrorMsg (state, props) {return{showErrorMsg: state.showErrorMsg = false}}
+
+
+class Nav extends Component {
  state = {
   toggleAddButton: true,
   addButtonName: "Add Data",
   clusterButtonName: "Cluster Data",
-  showErrorMsg: false,
-  tooltipOpen: false
+  showErrorMsg: false
  }
 
   onClickAddData = () =>{
-    this.setState({showErrorMsg: false})
+    this.setState(noErrorMsg)
     this.setState(
-      { toggleAddButton: !this.state.toggleAddButton },
+       { toggleAddButton: !this.state.toggleAddButton },
       () => {
         if(this.state.toggleAddButton) {
            this.setState({addButtonName: "Add Data"})
@@ -46,15 +48,8 @@ class Nav extends React.Component {
     }
   }
 
-  toggle = () => {
-    this.setState({
-      tooltipOpen: !this.state.tooltipOpen
-    });
-  }
-
   render() {
-    console.log("this is state from nav", this.state)
-    console.log("loading...",this.props.bikesReducer.loading)
+
     const {addButtonName,  clusterButtonName} = this.state;
     return (
       <div className="nav-container">
@@ -62,7 +57,7 @@ class Nav extends React.Component {
           <Button onClick={this.onClickAddData} outline color="primary" size="sm">{addButtonName}</Button>{' '}
           <Button onClick={this.onClickClusterData} outline color="primary" size="sm" href="#" id="TooltipExample">{clusterButtonName}</Button>
         </div>
-        {this.state.showErrorMsg ?  <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
+        {this.state.showErrorMsg ?  <Tooltip placement="bottom" isOpen={this.state.showErrorMsg} target="TooltipExample" toggle={this.onClickClusterData}>
         Please Add Data First!
         </Tooltip>: null}
       </div>

@@ -6,7 +6,6 @@ import MarkerClusterGroup from './react-leaflet-markercluster';
 import {getBikes, makeClustered} from '../../ducks/bikeReducer';
 import './map.css';
 import Loader from 'react-loader';
-import Chart from '../Chart/Chart';
 
 var options = {
   lines: 13,
