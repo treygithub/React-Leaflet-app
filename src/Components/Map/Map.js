@@ -74,7 +74,6 @@ class MapComponent extends Component {
                 iconCreateFunction={this.createClusterCustomIcon}
               >
             {MarkerDisplays}
-            <Chart />
             </MarkerClusterGroup>:MarkerDisplays}
             </Loader>
             </Map>
